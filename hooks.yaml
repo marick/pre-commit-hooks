@@ -7,6 +7,6 @@
 -   id: prohibit-suspicious-patterns
     name: prohibit suspicious patterns
     description: prevent commits of files with contents matching suspicious patterns
-    entry: prohibit-suspicious-patterns
-    language: python
+    entry: hooks/prohibit-suspicious-patterns
+    language: script
     files: ''
