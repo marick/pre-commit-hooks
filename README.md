@@ -1,4 +1,5 @@
-# pre-commit
+# Some `pre-commit` hooks I use
+
 Various git pre-commit or pre-push hooks using http://pre-commit.com/. 
 
 
@@ -25,8 +26,8 @@ General notes:
 *  The `sha` can be updated to the repo's most recent version with `pre-commit autoupdate`.
 
 Notes on `only-branch-pushes`:
-* `only-branch-pushes` actually can be applied during the `commit` stage (as it is here, according to the `stages` key). The name is not so good, but I'm too lazy to change it.
-* The first argument must be present as shown. The second is a `[[`-style shell pattern match. That is, it's
+* Despite the name, `only-branch-pushes` actually can be applied during the `commit` stage (as it is here, according to the `stages` key). The name is not so good, but I'm too lazy to change it.
+* The first argument must be `prevent`. The second is used in a `[[`-style shell pattern match. That is, it's
   compared like this:
   
       if [[ "$branch" =~ $pattern ]]; then
@@ -41,7 +42,7 @@ Notes on `prohibit-suspicious-patterns`:
 * The patterns are [Ruby regular expressions](http://ruby-doc.org/core-1.9.3/Regexp.html), compiled with `Regexp.compile`.
 * As such, you can't use the "outside-the-pattern" syntax for modifiers like "match any case. That is, instead of `/TODO/i`, you must use this: 
   
-     args: ["(?i-mx:TODO)", --]
+       args: ["(?i-mx:TODO)", --]
   
 * If you want to disable checking for a particular line, include `git commit ok` on that line. (You can replace the spaces with any *single* character.)
 * In violation of the spirit of `pre-commit`, this hook assumes Ruby already exists on your system.
