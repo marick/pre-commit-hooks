@@ -3,7 +3,9 @@
 
 
 required_arg=$1
+echo $required_arg
 pattern=$2
+echo $pattern
 
 if [ "$required_arg" != "--forbidden" ]; then
     echo "Bad .pre-commit-config.yaml: you must use :args [--forbidden x|y]"
