@@ -41,7 +41,7 @@ Notes on `prohibit-suspicious-patterns`:
 * The first arg searches for a pattern that matches AWS keys. I use it as a [suspenders and belt](http://www.investopedia.com/terms/b/belt-and-suspenders.asp) strategy, alongside the `detect-aws-keys` hook from the [standard repo](https://github.com/pre-commit/pre-commit-hooks).
 * The patterns are [Ruby regular expressions](http://ruby-doc.org/core-1.9.3/Regexp.html), compiled with `Regexp.compile`.
 * As such, you can't use the "outside-the-pattern" syntax for modifiers like "match any case. That is, instead of `/TODO/i`, you must use this: 
-
+  
        args: ["(?i-mx:TODO)", --]
   
 * If you want to disable checking for a particular line, include `git commit ok` on that line. (You can replace the spaces with any *single* character.)
