@@ -38,4 +38,8 @@ FILES.each do | f |
   exit_status |= try_file(f)
 end
 
+unless exit_status == 0
+  puts "You can allow a line through by putting `git commit ok` or `git-commit-ok` on it."
+end
+
 exit exit_status
