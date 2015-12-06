@@ -3,10 +3,10 @@
     description: prevent pushes to `production` or `master`
     entry: only-branch-pushes
     language: script
-    files: \.*$
+    files: ''
 -   id: prohibit-suspicious-patterns
     name: prohibit suspicious patterns
     description: prevent commits of files with contents matching suspicious patterns
     entry: prohibit-suspicious-patterns
     language: python
-    files: \.*$
+    files: ''
