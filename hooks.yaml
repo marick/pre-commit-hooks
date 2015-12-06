@@ -1,7 +1,7 @@
 -   id: only-branch-pushes
     name: only branch pushes
     description: prevent pushes to a list of forbidden branches
-    entry: only-branch-pushes
+    entry: hooks/only-branch-pushes
     language: script
     files: ''
 -   id: prohibit-suspicious-patterns
