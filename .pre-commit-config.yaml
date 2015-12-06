@@ -1,6 +1,8 @@
 -   repo: /Users/marick/src/pre-commit-hooks
-    sha: e306ff3b7d0d9a6fc7d128ef9ca2e0b6e6e76e8f
-    stages: [commit]
+    sha: b7bce722087d477f533e49ccf2dfe65906d8502b
+    stages:
+    - push
     hooks:
-    -   id: prohibit-suspicious-patterns
-        args: [production|master]
+    -   id: only-branch-pushes
+        args:
+        - master|production
