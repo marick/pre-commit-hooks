@@ -1,6 +1,15 @@
--   repo: https://github.com/pre-commit/pre-commit-hooks.git
-    sha: e306ff3b7d0d9a6fc7d128ef9ca2e0b6e6e76e8f
+-   repo: /Users/marick/src/pre-commit-hooks
+    sha: d6dee96f56bf9290f7ebb852c4252c50b8f6215d
     stages: [commit, push]
     hooks:
-    -   id: detect-aws-credentials
-    -   id: detect-private-key
+    -   id: only-branch-pushes
+        args: [prevent, production|master]
+        # You can prohibit just one branch with something like
+        # args: [prevent, production]
+
+    -   id: prohibit-suspicious-patterns
+        args: [AKIA, --]
+        # AKIA matches AWS keys.
+        # Arguments are Ruby regular expressions.
+        # So, for example, you can prohibit "todo" with any case with:
+        # args: ["(?i-mx:TODO)", --]
