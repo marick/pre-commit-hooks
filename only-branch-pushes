@@ -5,6 +5,7 @@
 PATTERN=$1
 
 echo "pattern " $PATTERN
+exit 1
 
 if [ "$PATTERN" == "" ]; then
     echo "Bad .pre-commit-config.yaml: you must use :args"
