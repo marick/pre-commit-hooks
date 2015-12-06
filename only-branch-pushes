@@ -1,6 +1,10 @@
 #!/bin/bash
 # Prevents force-pushing to production or master.
 
+
+echo "LKFJLKJDLKJLKDFJLKDJLKJDFLKJDLKJF"
+exit 1
+
 PATTERN=$1
 if [ "$PATTERN" == "" ]; then
     echo "Bad .pre-commit-config.yaml: you must use :args"
