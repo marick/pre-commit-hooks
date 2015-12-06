@@ -1,5 +1,5 @@
 # pre-commit
-Various git pre-commit or pre-push hooks using http://pre-commit.com/
+Various git pre-commit or pre-push hooks using http://pre-commit.com/. 
 
 
 1. Have Python's pip package manager installed. `brew install python`
