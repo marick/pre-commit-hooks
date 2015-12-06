@@ -5,7 +5,7 @@ Various git pre-commit or pre-push hooks using http://pre-commit.com/.
 1. Have Python's pip package manager installed. `brew install python`
 2. `pip install pre-commit`
 3. Put a `.pre-commit-config.yaml` at the root of a repo. See below.
-4. `pre-commit install`
+4. `pre-commit install` # this installs pre-commit hooks
 5. `pre-commit install --hook-type pre-push`
 
 Here is a sample [`.pre-commit-config.yaml`](https://github.com/marick/pre-commit-hooks/blob/master/dot-pre-commit-config.yaml.sample) file:
