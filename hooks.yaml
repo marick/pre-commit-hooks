@@ -8,5 +8,5 @@
     name: prohibit suspicious patterns
     description: prevent commits of files with contents matching suspicious patterns
     entry: hooks/prohibit-suspicious-patterns
-    language: ruby
+    language: script
     files: ''
