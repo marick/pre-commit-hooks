@@ -1,6 +1,6 @@
 -   id: only-branch-pushes
     name: only branch pushes
-    description: prevent pushes to `production` or `master`
+    description: prevent pushes to a list of forbidden branches
     entry: only-branch-pushes
     language: script
     files: ''
