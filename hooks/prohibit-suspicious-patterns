@@ -17,7 +17,7 @@ PATTERNS = pattern_args.map { | s | Regexp.compile(s) }
 def try_patterns_against_line(patterns, line, file)
   retval = 0
   patterns.each do | p |
-    if p =~ line
+    if p =~ line and /git.commit.ok/ !~ line
       puts "Pattern #{p.inspect} found in #{file}"
       retval = 1
     end
