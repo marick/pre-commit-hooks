@@ -2,25 +2,24 @@
 # Prevents force-pushing to production or master.
 
 
-PATTERN=$1
+required_arg=$1
+pattern=$2
 
-echo "pattern " $PATTERN
-exit 1
-
-if [ "$PATTERN" == "" ]; then
-    echo "Bad .pre-commit-config.yaml: you must use :args"
+if [ "$required_arg" != "--forbidden" ]; then
+    echo "Bad .pre-commit-config.yaml: you must use :args [--forbidden x|y]"
     exit 1
 fi
 
-echo "PATTERN"
+if [ "$pattern" == "" ]; then
+    echo "Bad .pre-commit-config.yaml: no pattern in args
+    exit 1
+fi
 
-BRANCH=`git rev-parse --abbrev-ref HEAD`
+branch=`git rev-parse --abbrev-ref HEAD`
 
-echo $BRANCH to pre-push
-
-if [[ "$BRANCH" =~ $PATTERN ]]; then
-  echo "Prevented push to $BRANCH."
-  echo "If you really want to do this, use --no-verify to bypass this pre-push hook."
+if [[ "$branch" =~ $pattern ]]; then
+  echo "Prevented push to $branch."
+  echo "If you really want to do this, use --no-verify to bypass this hook."
   exit 1
 fi
 
