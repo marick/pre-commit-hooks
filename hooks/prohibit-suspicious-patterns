@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+SEPARATOR="--"
+def split_args(array)
+  index = array.find_index { | elt | elt == SEPARATOR}
+  if (! index)
+    puts "There is no pattern list ending in a `--`."
+    exit 1
+  end
+
+  [array.slice(0, index), array.slice(index+1..-1)]
+end
+
+pattern_args,FILES=split_args(ARGV)
+PATTERNS = pattern_args.map { | s | Regexp.compile(s) }
+
+def try_patterns_against_line(patterns, line, file)
+  retval = 0
+  patterns.each do | p |
+    if p =~ line
+      puts "Pattern #{p.inspect} found in #{file}"
+      retval = 1
+    end
+  end
+  retval
+end
+
+def try_file(f)
+  retval = 0
+  IO.foreach(f) do | line |
+    retval |= try_patterns_against_line(PATTERNS, line, f)
+  end
+  retval
+end
+
+exit_status = 0
+FILES.each do | f |
+  exit_status |= try_file(f)
+end
+
+exit exit_status
