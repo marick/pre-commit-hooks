@@ -14,8 +14,6 @@ end
 pattern_args,FILES=split_args(ARGV)
 PATTERNS = pattern_args.map { | s | Regexp.compile(s) }
 
-puts pattern_args.inspect
-
 def try_patterns_against_line(patterns, line, file)
   retval = 0
   patterns.each do | p |

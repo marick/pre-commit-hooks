@@ -8,8 +8,9 @@
         # args: [prevent, production]
 
     -   id: prohibit-suspicious-patterns
-        args: [AKIA, --]
-        # AKIA matches AWS keys.
+        args: ["AKIA[[:alnum:]][[:alnum:]][[:alnum:]][[:alnum:]]", --]
+        # AKIA matches AWS keys. Repetition of [[:alnum]] is because {n} tickles
+        # a pre-commit bug.
         # Arguments are Ruby regular expressions.
         # So, for example, you can prohibit "todo" with any case with:
         # args: ["(?i-mx:TODO)", --]
