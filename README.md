@@ -20,7 +20,7 @@ Here is a sample [`.pre-commit-config.yaml`](https://github.com/marick/pre-commi
         args: [prevent, production|master]
 
     -   id: prohibit-suspicious-patterns
-        args: [AKIA..........., --] # matches AWS keys
+        args: ["AKIA[[:alnum:]][[:alnum:]][[:alnum:]][[:alnum:]]", --]
 ```
 General notes:
 *  The `sha` can be updated to the repo's most recent version with `pre-commit autoupdate`.
@@ -38,7 +38,7 @@ Notes on `only-branch-pushes`:
   
 
 Notes on `prohibit-suspicious-patterns`:
-* The first arg searches for a pattern that matches AWS keys. I use it as a [suspenders and belt](http://www.investopedia.com/terms/b/belt-and-suspenders.asp) strategy, alongside the `detect-aws-keys` hook from the [standard repo](https://github.com/pre-commit/pre-commit-hooks).
+* The first arg searches for a pattern that matches AWS keys. I use it as a [suspenders and belt](http://www.investopedia.com/terms/b/belt-and-suspenders.asp) strategy, alongside the `detect-aws-keys` hook from the [standard repo](https://github.com/pre-commit/pre-commit-hooks). The repetition of `[[:alnum:]]` is because of an [apparent bug](https://github.com/pre-commit/pre-commit/issues/314) in `pre-commit`
 * The patterns are [Ruby regular expressions](http://ruby-doc.org/core-1.9.3/Regexp.html), compiled with `Regexp.compile`.
 * As such, you can't use the "outside-the-pattern" syntax for modifiers like "match any case. That is, instead of `/TODO/i`, you must use this: 
   
