@@ -12,7 +12,7 @@ Various git pre-commit or pre-push hooks using http://pre-commit.com/.
 Here is a sample [`.pre-commit-config.yaml`](https://github.com/marick/pre-commit-hooks/blob/master/dot-pre-commit-config.yaml.sample) file:
 
 ```yaml
--   repo: /Users/marick/src/pre-commit-hooks
+-   repo: https://github.com/marick/pre-commit-hooks.git
     sha: d6dee96f56bf9290f7ebb852c4252c50b8f6215d
     stages: [commit, push]
     hooks:
