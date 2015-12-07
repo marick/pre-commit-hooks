@@ -13,7 +13,7 @@ Here is a sample [`.pre-commit-config.yaml`](https://github.com/marick/pre-commi
 
 ```yaml
 -   repo: https://github.com/marick/pre-commit-hooks.git
-    sha: d6dee96f56bf9290f7ebb852c4252c50b8f6215d
+    sha: 569f6300cbbedf177c56eda8023350620998ff8f
     stages: [commit, push]
     hooks:
     -   id: only-branch-pushes
