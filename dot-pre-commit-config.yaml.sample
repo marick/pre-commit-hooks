@@ -1,16 +1,14 @@
--   repo: /Users/marick/src/pre-commit-hooks
+-   repo: git://github.com/marick/pre-commit-hooks
     sha: d6dee96f56bf9290f7ebb852c4252c50b8f6215d
     stages: [commit, push]
     hooks:
     -   id: only-branch-pushes
-        args: [prevent, production|master]
+        args: [prevent, ^(production|master)$]
         # You can prohibit just one branch with something like
         # args: [prevent, production]
 
     -   id: prohibit-suspicious-patterns
-        args: ["AKIA[[:alnum:]][[:alnum:]][[:alnum:]][[:alnum:]]", --]
-        # AKIA matches AWS keys. Repetition of [[:alnum]] is because {n} tickles
-        # a pre-commit bug.
+        args: ["AKIA[[:alnum:]]{14}", --]
         # Arguments are Ruby regular expressions.
         # So, for example, you can prohibit "todo" with any case with:
         # args: ["(?i-mx:TODO)", --]

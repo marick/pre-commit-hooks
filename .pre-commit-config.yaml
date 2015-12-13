@@ -1,5 +1,5 @@
 -   repo: /Users/marick/src/pre-commit-hooks
-    sha: b7bce722087d477f533e49ccf2dfe65906d8502b
+    sha: 569f6300cbbedf177c56eda8023350620998ff8f
     stages:
     - push
     hooks:

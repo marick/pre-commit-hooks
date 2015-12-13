@@ -5,6 +5,7 @@ Various git pre-commit or pre-push hooks using http://pre-commit.com/.
 
 1. Have Python's pip package manager installed. `brew install python`
 2. `pip install pre-commit`
+    * If your version of `pre-commit` is less than 0.7, you need `pip install --upgrade pre-commit`
 3. Put a `.pre-commit-config.yaml` at the root of a repo. See below.
 4. `pre-commit install` # this installs pre-commit hooks
 5. `pre-commit install --hook-type pre-push`
@@ -17,7 +18,7 @@ Here is a sample [`.pre-commit-config.yaml`](https://github.com/marick/pre-commi
     stages: [commit, push]
     hooks:
     -   id: only-branch-pushes
-        args: [prevent, production|master]
+        args: [prevent, ^(production|master)$]
 
     -   id: prohibit-suspicious-patterns
         args: [AKIA..........., --] # matches AWS keys
@@ -27,14 +28,15 @@ General notes:
 
 Notes on `only-branch-pushes`:
 * Despite the name, `only-branch-pushes` actually can be applied during the `commit` stage (as it is here, according to the `stages` key). The name is not so good, but I'm too lazy to change it.
-* The first argument must be `prevent`. The second is used in a `[[`-style shell pattern match. That is, it's
+* The first argument must be `prevent`. The second is used in a
+  `=~`-style shell pattern match. That is, it's
   compared like this:
   
       if [[ "$branch" =~ $pattern ]]; then
   
   If you want to prohibit just one branch, such as `production`, do this:
   
-      args: [prevent, production]
+      args: [prevent, ^production$]
   
 
 Notes on `prohibit-suspicious-patterns`:
