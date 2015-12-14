@@ -29,4 +29,8 @@ FILES.each do | f |
   exit_status |= try_file(f)
 end
 
+unless exit_status == 0
+  puts "If you really want to commit these files, use --no-verify to bypass this hook."
+end
+
 exit exit_status
