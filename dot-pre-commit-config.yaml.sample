@@ -1,3 +1,12 @@
+-   repo: https://github.com/pre-commit/pre-commit-hooks.git
+    sha: e306ff3b7d0d9a6fc7d128ef9ca2e0b6e6e76e8f
+    stages:
+    - commit
+    - push
+    hooks:
+    -   id: detect-aws-credentials
+    -   id: detect-private-key
+
 -   repo: git://github.com/marick/pre-commit-hooks
     sha: d6dee96f56bf9290f7ebb852c4252c50b8f6215d
     stages: [commit, push]
