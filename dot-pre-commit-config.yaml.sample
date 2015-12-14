@@ -12,3 +12,6 @@
         # Arguments are Ruby regular expressions.
         # So, for example, you can prohibit "todo" with any case with:
         # args: ["(?i-mx:TODO)", --]
+
+    -   id: prohibit-suspicious-files
+        args: [foo, --]

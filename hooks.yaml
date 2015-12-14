@@ -10,3 +10,9 @@
     entry: hooks/prohibit-suspicious-patterns
     language: script
     files: ''
+-   id: prohibit-suspicious-files
+    name: prohibit files that shouldn't be checked in
+    description: prevent commits of files with names matching suspicious patterns
+    entry: hooks/prohibit-suspicious-files
+    language: script
+    files: ''
