@@ -8,10 +8,22 @@
         # args: [prevent, production]
 
     -   id: prohibit-suspicious-patterns
-        args: ["AKIA[[:alnum:]]{14}", --]
         # Arguments are Ruby regular expressions.
         # So, for example, you can prohibit "todo" with any case with:
-        # args: ["(?i-mx:TODO)", --]
+        # "(?i-mx:TODO)"
+        args:
+        - AKIA[[:alnum:]]{14}
+        - ^nocommit
+        - --
 
     -   id: prohibit-suspicious-files
-        args: [foo, --]
+        # Arguments are Ruby regular expressions.
+        args:
+        - ^\.ssh$
+        - ^\.npmrc$
+        - ^\.muttrc$
+        - ^\.gitconfig$
+        - ^\.netrc$
+        - ^\.lein-env$
+        - .log$
+        - -- 
