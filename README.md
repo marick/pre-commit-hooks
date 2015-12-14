@@ -10,7 +10,9 @@ Various git pre-commit or pre-push hooks using http://pre-commit.com/.
 4. `pre-commit install` # this installs pre-commit hooks
 5. `pre-commit install --hook-type pre-push`
 
-Here is a sample [`.pre-commit-config.yaml`](https://github.com/marick/pre-commit-hooks/blob/master/dot-pre-commit-config.yaml.sample) file:
+Below please find a short sample
+`.pre-commit-config.yaml`. [dot-pre-commit-config.yaml.sample](https://github.com/marick/pre-commit-hooks/blob/master/dot-pre-commit-config.yaml.sample)
+contains a longer one.
 
 ```yaml
 -   repo: /Users/marick/src/pre-commit-hooks
@@ -22,7 +24,11 @@ Here is a sample [`.pre-commit-config.yaml`](https://github.com/marick/pre-commi
 
     -   id: prohibit-suspicious-patterns
         args: [AKIA..........., --] # matches AWS keys
+
+    -   id: prohibit-suspicious-files
+        args: [".log$", --] # Don't commit log files. They can contain personal info.
 ```
+
 General notes:
 *  The `sha` can be updated to the repo's most recent version with `pre-commit autoupdate`.
 
@@ -49,3 +55,6 @@ Notes on `prohibit-suspicious-patterns`:
 * If you want to disable checking for a particular line, include `git commit ok` on that line. (You can replace the spaces with any *single* character.)
 * In violation of the spirit of `pre-commit`, this hook assumes Ruby already exists on your system.
 
+Notes on `prohibit-suspicious-files`:
+* Patterns are also Ruby regular expressions.
+* The hook assumes Ruby already exists on your system.
