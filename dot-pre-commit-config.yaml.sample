@@ -8,7 +8,7 @@
     -   id: detect-private-key
 
 -   repo: git://github.com/marick/pre-commit-hooks
-    sha: d6dee96f56bf9290f7ebb852c4252c50b8f6215d
+    sha: 46d3644beff18fbb612c2de586e3435500d2c61a
     stages: [commit, push]
     hooks:
     -   id: only-branch-pushes
