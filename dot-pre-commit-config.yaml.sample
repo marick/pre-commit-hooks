@@ -13,7 +13,7 @@
         # "(?i-mx:TODO)"
         args:
         - AKIA[[:alnum:]]{14}
-        - ^nocommit
+        - NOCOMMIT
         - --
 
     -   id: prohibit-suspicious-files
