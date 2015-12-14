@@ -15,15 +15,15 @@ Below please find a short sample
 contains a longer one.
 
 ```yaml
--   repo: /Users/marick/src/pre-commit-hooks
-    sha: d6dee96f56bf9290f7ebb852c4252c50b8f6215d
+-   repo: https://github.com/marick/pre-commit-hooks.git
+    sha: 569f6300cbbedf177c56eda8023350620998ff8f
     stages: [commit, push]
     hooks:
     -   id: only-branch-pushes
         args: [prevent, ^(production|master)$]
 
     -   id: prohibit-suspicious-patterns
-        args: [AKIA..........., --] # matches AWS keys
+        args: [AKIA[[:alnum:]]{14}, --] # matches AWS keys
 
     -   id: prohibit-suspicious-files
         args: [".log$", --] # Don't commit log files. They can contain personal info.
@@ -46,11 +46,19 @@ Notes on `only-branch-pushes`:
   
 
 Notes on `prohibit-suspicious-patterns`:
-* The first arg searches for a pattern that matches AWS keys. I use it as a [suspenders and belt](http://www.investopedia.com/terms/b/belt-and-suspenders.asp) strategy, alongside the `detect-aws-keys` hook from the [standard repo](https://github.com/pre-commit/pre-commit-hooks).
-* The patterns are [Ruby regular expressions](http://ruby-doc.org/core-1.9.3/Regexp.html), compiled with `Regexp.compile`.
-* As such, you can't use the "outside-the-pattern" syntax for modifiers like "match any case. That is, instead of `/TODO/i`, you must use this: 
+* The first arg searches for a pattern that matches AWS keys. I use it
+  as a
+  [suspenders and belt](http://www.investopedia.com/terms/b/belt-and-suspenders.asp)
+  strategy, alongside the `detect-aws-keys` hook from the
+  [standard repo](https://github.com/pre-commit/pre-commit-hooks). 
+* The patterns are
+  [Ruby regular expressions](http://ruby-doc.org/core-1.9.3/Regexp.html),
+  compiled with `Regexp.compile`.
+* As such, you can't use the "outside-the-pattern" syntax for
+  modifiers like "match any case. That is, instead of `/TODO/i`, you
+  must use this:
   
-      args: ["(?i-mx:TODO)", --]
+        args: ["(?i-mx:TODO)", --]
 
 * If you want to disable checking for a particular line, include `git commit ok` on that line. (You can replace the spaces with any *single* character.)
 * In violation of the spirit of `pre-commit`, this hook assumes Ruby already exists on your system.
