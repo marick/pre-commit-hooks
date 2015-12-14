@@ -17,7 +17,7 @@ PATTERNS = pattern_args.map { | s | Regexp.compile(s) }
 def try_file(f)
   PATTERNS.each do | pattern |
     if pattern =~ f
-      puts "Pattern #{p.inspect} prohibits #{f}"
+      puts "Pattern #{pattern.inspect} prohibits #{f}"
       return 1
     end
   end
