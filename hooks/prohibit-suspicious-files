@@ -16,14 +16,16 @@ PATTERNS = pattern_args.map { | s | Regexp.compile(s) }
 
 def try_file(f)
   PATTERNS.each do | pattern |
-    return 1 if pattern =~ f
+    if pattern =~ f
+      puts "Pattern #{p.inspect} prohibits #{f}"
+      return 1
+    end
   end
   0
 end
 
 exit_status = 0
 FILES.each do | f |
-  puts f
   exit_status |= try_file(f)
 end
 
