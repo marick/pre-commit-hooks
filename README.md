@@ -10,6 +10,18 @@ Various git pre-commit or pre-push hooks using http://pre-commit.com/.
 4. `pre-commit install` # this installs pre-commit hooks
 5. `pre-commit install --hook-type pre-push`
 
+If you have many repos to protect, you can use `install-hooks-in-repo`
+to shorten steps 3-5. For example, if this repo has been cloned to
+where you clone all your repos, you can protect them all like this:
+
+```
+echo * | xargs -n1 pre-commit-hooks/install-hooks-in-repo pre-commit-hooks/dot-pre-commit-config.yaml.sample
+```
+
+`install-hooks-in-repo` will ignore non-directories and directories that aren't a git repo. It creates a log in `/tmp/install-hooks-in-repo.log`.
+
+------------------
+
 Below please find a short sample
 `.pre-commit-config.yaml`. [dot-pre-commit-config.yaml.sample](https://github.com/marick/pre-commit-hooks/blob/master/dot-pre-commit-config.yaml.sample)
 contains a longer one.

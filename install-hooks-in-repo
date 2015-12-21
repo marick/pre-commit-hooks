@@ -1,0 +1,37 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: `basename $0` <config> <repo>"
+    echo "Change into <repo>. Copy the <config> file into '.pre-commit-config.yaml'."
+    echo "Install both pre-commit and pre-push hooks."
+    echo "Ignores non-directories and directories without a git repo."
+    echo "A typical use: "
+    echo 'echo * | xargs -n1 pre-commit/dot-pre-commit-config.yaml.sample '
+    exit 1
+}
+
+config=$1
+if [ "$config" == "" ]; then usage; fi
+
+repo=$2
+if [ "$repo" == "" ]; then usage; fi
+
+
+if ! test -d $repo; then
+    echo "== Skipping '$repo' - not a directory"
+    exit 0
+fi
+cd $repo
+
+if ! test -d .git ; then
+  echo "== Skipping '$repo' - not a git repo"
+  exit 0
+fi
+
+echo $repo
+cp ~/src/pre-commit-hooks/dot-pre-commit-config.yaml.sample .pre-commit-config.yaml
+pre-commit autoupdate >> /tmp/install-hooks-in-repo.log
+pre-commit install >> /tmp/install-hooks-in-repo.log
+pre-commit install --hook-type pre-push >> /tmp/install-hooks-in-repo.log
+
+exit 0
