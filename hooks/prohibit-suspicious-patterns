@@ -28,6 +28,7 @@ end
 def try_file(f)
   retval = 0
   IO.foreach(f) do | line |
+    line.encode!('US-ASCII', 'US-ASCII', invalid: :replace,undef: :replace, replace:'')
     retval |= try_patterns_against_line(PATTERNS, line, f)
   end
   retval
