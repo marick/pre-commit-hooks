@@ -14,8 +14,8 @@
     hooks:
     -   id: prohibit-suspicious-patterns
         args:
-        - AKIA[[:alnum:]]{14}
-        - NOCOMMIT
+        - AKIA[[:alnum:]]{14}       # git commit ok
+        - NOCOMMIT                  # git commit ok
         - --
     -   id: prohibit-suspicious-files
         args:
