@@ -1,3 +1,14 @@
+# Some checks to stop some human errors:
+# - checking in AWS secrets, private keys, and other suspicious patterns.
+# - ditto for suspicious files, like `.ssh`.
+# - prevent direct commit/push to master or production (enforce pull-request hygiene)
+#
+# To use:
+# - brew install pre-commit
+# - cd <git root>
+# - pre-commit install                       # protect commits
+# - pre-commit install --hook-type pre-push  # suspenders *and* belt
+
 -   repo: https://github.com/pre-commit/pre-commit-hooks.git
     sha: e306ff3b7d0d9a6fc7d128ef9ca2e0b6e6e76e8f
     stages:
@@ -8,7 +19,7 @@
     -   id: detect-private-key
 
 -   repo: git://github.com/marick/pre-commit-hooks
-    sha: b7918cc030b833e88c6f663d6222c1bec2d219fa
+    sha: a4bfe84e14025ee174a48cbe3069b14f9421efb6
     stages: [commit, push]
     hooks:
     -   id: only-branch-pushes
@@ -21,8 +32,8 @@
         # So, for example, you can prohibit "todo" with any case with:
         # "(?i-mx:TODO)"
         args:
-        - AKIA[[:alnum:]]{14}
-        - NOCOMMIT
+        - AKIA[[:alnum:]]{14}         # git commit ok - so this doesn't prevent itself.
+        - NOCOMMIT                    # git commit ok
         - --
 
     -   id: prohibit-suspicious-files
